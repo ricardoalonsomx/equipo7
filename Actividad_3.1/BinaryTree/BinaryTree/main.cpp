@@ -153,9 +153,22 @@ int main(int argc, const char * argv[]) {
     std::cout << (exist ? "(S) El valor 20 se encontró" : "(S) El valor 20 no existe") << std::endl;
     
     /* Recorrer todos los datos del BST en preorder */
-    bst->visit(1, nullptr);
+    std::cout << std::endl << "Los datos en preorder son:" << std::endl;
+    bst->visit(1);
     
-    std::cout << "(C) Se eliminan todos los nodos del árbol" << std::endl;
+    /* Recorrer todos los datos del BST en inorder */
+    std::cout << std::endl << "Los datos en inorder son:" << std::endl;
+    bst->visit(2);
+    
+    /* Recorrer todos los datos del BST en postorder */
+    std::cout << std::endl << "Los datos en postorder son:" << std::endl;
+    bst->visit(3);
+    
+    /* Recorrer todos los datos del BST en level by level */
+    std::cout << std::endl << "Los datos en level by level son:" << std::endl;
+    bst->visit(4);
+    
+    std::cout << std::endl << "(C) Se eliminan todos los nodos del árbol" << std::endl;
     bst->clear();
     
     /* Determinar si el BST está vacío */

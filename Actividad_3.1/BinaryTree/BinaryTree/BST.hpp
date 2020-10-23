@@ -21,7 +21,7 @@ public:
     TreeNode<T> * search(const T &) const;
     bool insert(T &);
     bool insert(TreeNode<T> * );
-    void visit(const int, TreeNode<T> *);
+    void visit(const int);
     
     
 private:
@@ -102,27 +102,18 @@ bool BST<T>::insert(TreeNode<T> * node )
 }
 
 template <class T>
-void BST<T>::visit(const int param, TreeNode<T> * node)
+void BST<T>::visit(const int param)
 {
-    /* Preorder */
-    if (param == 1) {
-        TreeNode<T> * nextNode = nullptr;
+    if (param == 1) { // Postorder
+        this->preOrden();
         
-        if (node == nullptr) {
-            node = this->root;
-        }
+    } else if (param == 2) { // Inorder
+        this->inOrden();
         
-        if (node->getLeft() != nullptr) {
-            nextNode = node->getLeft();
-            std::cout << nextNode->getInfo() << std::endl;
-            this->visit(1, nextNode);
-        }
-        
-        if (node->getRight() != nullptr) {
-            nextNode = node->getRight();
-            std::cout << nextNode->getInfo() << std::endl;
-            this->visit(1, nextNode);
-        }
+    } else if (param == 3) { // Postorder
+        this->postOrden();
+    } else if (param == 4) {
+        this->level_by_level();
         
     }
     

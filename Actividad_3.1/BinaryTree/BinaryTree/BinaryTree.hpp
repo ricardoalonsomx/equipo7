@@ -45,6 +45,9 @@ public:
     void postOrden() const;
     void postOrden(TreeNode<T> *) const;
     
+    void level_by_level() const;
+    void level_by_level(TreeNode<T> *) const;
+    
 };
 
 template <class T>
@@ -189,6 +192,34 @@ void BinaryTree<T>::postOrden(TreeNode<T> * node) const
         
         /* Procesar el nodo */
         std::cout << *node << " ";
+    }
+}
+
+template <class T>
+void BinaryTree<T>::level_by_level() const
+{
+    this->level_by_level(this->root);
+}
+
+template <class T>
+void BinaryTree<T>::level_by_level(TreeNode<T> * node) const
+{
+    if (node != nullptr) {
+        if (node == this->root) {
+            std::cout << *node << " ";
+        }
+        
+        if (node->getLeft() != nullptr) {
+            std::cout << *node->getLeft() << " ";
+        }
+        
+        if (node->getRight() != nullptr) {
+            std::cout << *node->getRight() << " ";
+        }
+        
+        level_by_level(node->getLeft());
+        level_by_level(node->getRight());
+        
     }
 }
 
