@@ -51,10 +51,6 @@ public:
     int height() const;
     int height(TreeNode<T> * node) const;
     
-    void ancestors(TreeNode<T> *) const;
-    
-    int whatLevelAmI(TreeNode<T> *) const;
-    
 };
 
 template <class T>
@@ -252,24 +248,8 @@ int BinaryTree<T>::height(TreeNode<T> * node) const
 
 }
 
-template <class T>
-void BinaryTree<T>::ancestors(TreeNode<T> * node) const {
-    if (node->getParent() != nullptr) {
-        std::cout << *node->getParent() << " ";
-        ancestors(node->getParent());
-    }
-}
 
-template <class T>
-int BinaryTree<T>::whatLevelAmI(TreeNode<T> * node) const {
-    int level = 0;
-    
-    while (node->getParent() != nullptr) {
-        ++level;
-        node = node->getParent();
-    }
-    
-    return level;
-}
+
+
 
 #endif /* BinaryTree_hpp */

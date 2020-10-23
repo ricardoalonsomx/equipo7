@@ -176,12 +176,11 @@ int main(int argc, const char * argv[]) {
     std::cout << std::endl << "(H) La altura del BST es: " << bst->height() << std::endl;
     
     /* Obtener los ancestros de un nodo */
-    TreeNode<int> * prueba = bst->search(4);
-    std::cout << "(A) Los ancestros de " << *prueba << " son:" << std::endl;
-    bst->ancestors(prueba);
+    std::cout << "(A) Los ancestros de 4 son:" << std::endl;
+    bst->ancestors(4);
     
     /* Obtener el nivel de un nodo */
-    std::cout << std::endl << "(L) El nivel de " << *prueba << " es el: "  << bst->whatLevelAmI(prueba) << std::endl;
+    std::cout << std::endl << "(L) El nivel de 4 es el: "  << bst->whatLevelAmI(4) << std::endl;
     
     std::cout << std::endl << "(C) Se eliminan todos los nodos del árbol" << std::endl;
     bst->clear();

@@ -21,7 +21,14 @@ public:
     TreeNode<T> * search(const T &) const;
     bool insert(T &);
     bool insert(TreeNode<T> * );
+    
     void visit(const int);
+    
+    void ancestors(const T &) const;
+    void ancestors(TreeNode<T> * node) const;
+    
+    int whatLevelAmI(const T &) const;
+    int whatLevelAmI(TreeNode<T> * node) const;
     
     
 private:
@@ -120,5 +127,36 @@ void BST<T>::visit(const int param)
     
 }
 
+template <class T>
+void BST<T>::ancestors(const T & value) const {
+    this->ancestors(this->search(value));
+}
+
+template <class T>
+void BST<T>::ancestors(TreeNode<T> * node) const {
+    TreeNode<T> * parent = node->getParent();
+    
+    if (node->getParent() != nullptr) {
+        std::cout << *parent << " ";
+        ancestors(parent->getInfo());
+    }
+}
+
+template <class T>
+int BST<T>::whatLevelAmI(const T & value) const {
+    return this->whatLevelAmI(this->search(value));
+}
+
+template <class T>
+int BST<T>::whatLevelAmI(TreeNode<T> * node) const {
+    int level = 0;
+    
+    while (node->getParent() != nullptr) {
+        ++level;
+        node = node->getParent();
+    }
+    
+    return level;
+}
 
 #endif /* BST_hpp */
