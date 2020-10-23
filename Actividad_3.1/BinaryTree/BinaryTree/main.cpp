@@ -126,6 +126,7 @@ int main(int argc, const char * argv[]) {
     
     std::cout << (inserted ? "(I) El valor 9 se insertó" : "(I) El valor 9 ya existe existe") << std::endl;
     
+    /*
     std::cout << "(V) Se imprime el BST en PreOrden" << std::endl;
     bst->preOrden();
     std::cout << std::endl;
@@ -137,6 +138,7 @@ int main(int argc, const char * argv[]) {
     std::cout << "(V) Se imprime el BST en PostOrden" << std::endl;
     bst->postOrden();
     std::cout << std::endl;
+    */
     
     TreeNode<int> * exist = bst->search(6);
     /* Buscar si el nodo existe */
@@ -152,32 +154,34 @@ int main(int argc, const char * argv[]) {
     /* Buscar si el nodo existe */
     std::cout << (exist ? "(S) El valor 20 se encontró" : "(S) El valor 20 no existe") << std::endl;
     
+    std::cout << std::endl << std::endl << "ACTIVIDAD 3.1:" << std::endl;
+    
     /* Recorrer todos los datos del BST en preorder */
-    std::cout << std::endl << "Los datos en preorder son:" << std::endl;
+    std::cout << std::endl << "(V) Los datos en preorder son:" << std::endl;
     bst->visit(1);
     
     /* Recorrer todos los datos del BST en inorder */
-    std::cout << std::endl << "Los datos en inorder son:" << std::endl;
+    std::cout << std::endl << "(V) Los datos en inorder son:" << std::endl;
     bst->visit(2);
     
     /* Recorrer todos los datos del BST en postorder */
-    std::cout << std::endl << "Los datos en postorder son:" << std::endl;
+    std::cout << std::endl << "(V) Los datos en postorder son:" << std::endl;
     bst->visit(3);
     
     /* Recorrer todos los datos del BST en level by level */
-    std::cout << std::endl << "Los datos en level by level son:" << std::endl;
+    std::cout << std::endl << "(V) Los datos en level by level son:" << std::endl;
     bst->visit(4);
     
     /* Obtener la altura del BST */
-    std::cout << std::endl << "La altura del BST es:" << bst->height() << std::endl;
+    std::cout << std::endl << "(H) La altura del BST es: " << bst->height() << std::endl;
     
     /* Obtener los ancestros de un nodo */
     TreeNode<int> * prueba = bst->search(4);
-    std::cout << "Los ancestros de " << *prueba << " son:" << std::endl;
+    std::cout << "(A) Los ancestros de " << *prueba << " son:" << std::endl;
     bst->ancestors(prueba);
     
     /* Obtener el nivel de un nodo */
-    std::cout << std::endl << "El nivel de " << *prueba << " es el: "  << bst->whatLevelAmI(prueba) << std::endl;
+    std::cout << std::endl << "(L) El nivel de " << *prueba << " es el: "  << bst->whatLevelAmI(prueba) << std::endl;
     
     std::cout << std::endl << "(C) Se eliminan todos los nodos del árbol" << std::endl;
     bst->clear();
