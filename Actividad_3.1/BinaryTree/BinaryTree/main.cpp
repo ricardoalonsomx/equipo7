@@ -168,6 +168,17 @@ int main(int argc, const char * argv[]) {
     std::cout << std::endl << "Los datos en level by level son:" << std::endl;
     bst->visit(4);
     
+    /* Obtener la altura del BST */
+    std::cout << std::endl << "La altura del BST es:" << bst->height() << std::endl;
+    
+    /* Obtener los ancestros de un nodo */
+    TreeNode<int> * prueba = bst->search(4);
+    std::cout << "Los ancestros de " << *prueba << " son:" << std::endl;
+    bst->ancestors(prueba);
+    
+    /* Obtener el nivel de un nodo */
+    std::cout << std::endl << "El nivel de " << *prueba << " es el: "  << bst->whatLevelAmI(prueba) << std::endl;
+    
     std::cout << std::endl << "(C) Se eliminan todos los nodos del árbol" << std::endl;
     bst->clear();
     
