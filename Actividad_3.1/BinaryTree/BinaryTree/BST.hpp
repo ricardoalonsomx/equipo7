@@ -22,12 +22,19 @@ public:
     bool insert(T &);
     bool insert(TreeNode<T> * );
     
+    //O(n)
     void visit(const int);
     
+    //O(2n)
     void ancestors(const T &) const;
+    
+    //O(n)
     void ancestors(TreeNode<T> * node) const;
     
+    //O(n logn) en el peor caso, O(c) en el mejor caso
     int whatLevelAmI(const T &) const;
+    
+    //O(n) en el peor caso, O(c) en el mejor caso
     int whatLevelAmI(TreeNode<T> * node) const;
     
     

@@ -48,7 +48,10 @@ public:
     void level_by_level() const;
     void level_by_level(TreeNode<T> *) const;
     
+    //O(n)
     int height() const;
+    
+    //O(n)
     int height(TreeNode<T> * node) const;
     
 };
