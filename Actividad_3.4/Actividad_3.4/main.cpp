@@ -14,7 +14,6 @@
 #include "Registro.hpp"
 #include "ConexionesComputadora.hpp"
 #include "BST.hpp"
-#include "Map.hpp"
 
 auto read_csv_strings(std::string filename){
     
@@ -110,21 +109,42 @@ auto read_csv_registro(std::string filename)
     return lineas;
 }
 
-map <string, int> conexionesPorDia(std::vector< Registro > registros, string fecha){
+
+bool checkReto(string sitio){
+    int length = (int) sitio.length();
+    
+    if(length >= 8){
+        int start = length-8;
+        int j = 0;
+        string reto = "reto.com";
+        
+        
+        for(int i = start; i<length; i++){
+            
+            if(sitio.at(i) != reto.at(j))
+                return true;
+            j++;
+        }
+    }
+    return false;
+}
+
+map <string, int> conexionesPorDia(string fecha, std::vector< Registro > registros){
     
     map <string, int>  mapaDelDia = map <string, int>();
+    
     
     
     return mapaDelDia;
 }
 
-void top(int n, string fecha, std::vector< Registro > registros){
+void top(int n, string fecha, map <string, int>){
     BST< map <string, int> > arbol;
     
-    arbol.insert(conexionesPorDia(registros, fecha));
     
-    for(int i = 0; i<n; i++)
-        cout << arbol.inOrden(i);
+    arbol.insert(conexionesPorDia(registros, fecha));
+
+    cout << arbol.inOrden(i);
     
     arbol.clear();
 }
@@ -141,11 +161,12 @@ int main(int argc, const char * argv[]){
     int sizeOfRegistros = (int)registros.size();
     string fechaTemp1;
     string fechaTemp2;
-    fechaTemp1 = registros.at(0).Fecha();
+    
     
     for(int i = 0; i<sizeOfRegistros; i++){
-    
-        top(i, fechaTemp1, registros);
+        fechaTemp1 = registros.at(0).Fecha();
+        fechaTemp2 = fechaTemp1;
+        top(5, fechaTemp1, conexionesPorDia(fechaTemp1, registros));
     
         
         if(i+1 <= sizeOfRegistros){
