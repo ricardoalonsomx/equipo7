@@ -129,11 +129,25 @@ bool checkReto(string sitio){
     return false;
 }
 
-map <string, int> conexionesPorDia(string fecha, std::vector< Registro > registros){
+map <string, int> conexionesPorDia(string fecha, std::vector< Registro >                                                               registros){
+    map <string, int>  mapaDelDia;
+    int size = (int) registros.size();
+    std::map<std::string, int>::iterator it;
+    string sitio;
     
-    map <string, int>  mapaDelDia = map <string, int>();
     
-    
+    for(int i = 0; i<size; i++){
+        sitio = registros.at(i).Destino();
+        it = mapaDelDia.find(sitio);
+        
+        if (it ==  mapaDelDia.end()) {
+            std::pair<std::string, int> nuevoSitio(sitio, 1);
+            mapaDelDia.insert(nuevoSitio);;
+        }
+        else
+            it -> second++ ;
+        
+    }
     
     return mapaDelDia;
 }
