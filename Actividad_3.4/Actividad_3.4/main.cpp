@@ -14,7 +14,6 @@
 #include "Registro.hpp"
 #include "ConexionesComputadora.hpp"
 #include "BST.hpp"
-#include "Map.hpp"
 
 auto read_csv_strings(std::string filename){
     
@@ -110,53 +109,86 @@ auto read_csv_registro(std::string filename)
     return lineas;
 }
 
-map <string, int> conexionesPorDia(std::vector< Registro > registros, string fecha){
+
+bool checkReto(string sitio){
+    int length = (int) sitio.length();
     
-    map <string, int>  mapaDelDia = map <string, int>();
+    if(length >= 8){
+        int start = length-8;
+        int j = 0;
+        string reto = "reto.com";
+        
+        
+        for(int i = start; i<length; i++){
+            
+            if(sitio.at(i) != reto.at(j))
+                return true;
+            j++;
+        }
+    }
+    return false;
+}
+
+map <string, int> conexionesPorDia(string fecha, std::vector< Registro >                                                               registros){
+    map <string, int>  mapaDelDia;
+    int size = (int) registros.size();
+    std::map<std::string, int>::iterator it;
+    string sitio;
     
+    
+    for(int i = 0; i<size; i++){
+        sitio = registros.at(i).Destino();
+        it = mapaDelDia.find(sitio);
+        
+        if (it ==  mapaDelDia.end()) {
+            std::pair<std::string, int> nuevoSitio(sitio, 1);
+            mapaDelDia.insert(nuevoSitio);;
+        }
+        else
+            it -> second++ ;
+        
+    }
     
     return mapaDelDia;
 }
 
-void top(int n, string fecha, std::vector< Registro > registros){
-    BST< map <string, int> > arbol;
+void top(int n, string fecha, map <string, int> mapa){
+    BST< std::pair<std::string, int> > arbol;
     
-    arbol.insert(conexionesPorDia(registros, fecha));
     
-    for(int i = 0; i<n; i++)
-        cout << arbol.inOrden(i);
+    for (auto elem : mapa) {
+        TreeNode< std::pair<std::string, int> > * nodo =
+        new TreeNode< std::pair<std::string, int> > (elem);
+        arbol.insert(nodo);
+    }
+
+    arbol.inOrden();
     
     arbol.clear();
 }
 
 
 int main(int argc, const char * argv[]){
-    std::map <string, int> mapaDelDia;
-    string value = "192.168.57.";
-    
-    std::cout << std::endl << std::endl;
     
     /* Lectura de los datos como un objeto Registros */
     std::vector< Registro > registros = read_csv_registro("equipo7.csv");
+    
     int sizeOfRegistros = (int)registros.size();
     string fechaTemp1;
     string fechaTemp2;
-    fechaTemp1 = registros.at(0).Fecha();
+    
     
     for(int i = 0; i<sizeOfRegistros; i++){
-    
-        top(i, fechaTemp1, registros);
-    
+        fechaTemp1 = registros.at(i).Fecha();
+        fechaTemp2 = fechaTemp1;
+        top(5, fechaTemp1, conexionesPorDia(fechaTemp1, registros));
+            
         
-        if(i+1 <= sizeOfRegistros){
-    
-                fechaTemp2 = fechaTemp1;
-    
-                while(fechaTemp2 == fechaTemp1){
-                    i++;
-                    fechaTemp1 = registros.at(i).Fecha();
-                }
+            while(!fechaTemp2.compare(fechaTemp1)){
+                i++;
+                fechaTemp1 = registros.at(i).Fecha();
             }
+            
         }
     
     registros.clear();
