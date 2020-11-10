@@ -161,8 +161,8 @@ void top(int n, string fecha, map <string, int> mapa){
         new TreeNode< std::pair<std::string, int> > (elem);
         arbol.insert(nodo);
     }
-
-    arbol.inOrden();
+    
+    arbol.preOrden();
     
     arbol.clear();
 }
