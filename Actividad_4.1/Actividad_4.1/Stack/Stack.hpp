@@ -9,7 +9,7 @@
 #define Stack_hpp
 
 #include <iostream>
-#include "../LinkedList/LinkedList/LinkedList.hpp"
+#include "../LinkedList/LinkedList.hpp"
 
 template <class T>
 class Stack : private LinkedList<T> {

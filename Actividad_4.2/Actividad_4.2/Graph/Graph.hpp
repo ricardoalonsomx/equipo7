@@ -27,7 +27,6 @@ public:
     void addVertex(Vertex<V,E> * );
     void addEdge(Vertex<V,E> *, Vertex<V,E> *, const E & );
     void removeEdge(Vertex<V,E> *, Vertex<V,E> *, const E & );
-    std::vector < Vertex<V, E> * > getHead();
     
     template <class Vn, class En>
     friend std::ostream & operator <<(std::ostream &, const Graph<Vn,En> &);
@@ -67,6 +66,7 @@ void Graph<V,E>::addEdge(Vertex<V,E> * source, Vertex<V,E> * target, const E & v
     Edge<V, E> * edge = new Edge<V,E>(value, target);
     
     (*node)->addEdge(edge);
+    (*node)->addConexion();
 }
 
 template <class V, class E>
@@ -91,13 +91,14 @@ void Graph<V,E>::removeEdge(Vertex<V,E> * source, Vertex<V,E> * target, const E 
     if (to_remove) {
         vertex->removeEdge(to_remove);
     }
+    target->removeConexion();
     
 }
 
 template <class V, class E>
 std::ostream & operator <<(std::ostream & os, const Graph<V,E> & graph)
 {
-    os << "--- Graph ---" << std::endl;
+    os << "     --------- Graph ---------" << std::endl;
     
     for (auto v :  graph.nodes) {
         os << *v;
@@ -105,8 +106,5 @@ std::ostream & operator <<(std::ostream & os, const Graph<V,E> & graph)
     
     return os;
 }
-
-
-
 
 #endif /* Graph_hpp */
