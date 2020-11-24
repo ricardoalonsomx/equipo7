@@ -19,22 +19,22 @@ private:
 public:
     Registro(){}
     
-    Registro(std::string f, std::string h, std::string o, std::string po,          std::string d, std::string no, std::string pd, std::string nd):
+    Registro(std::string f, std::string h, std::string no, std::string po,          std::string o, std::string nd, std::string pd, std::string d):
     fecha(f), hora(h), origen(o), destino(d),
     puertoOrigen(po), nombreOringen(no),
     puertoDestino(pd), nombreDestino(nd) {}
     
     std::string getDestino(){
-        return puertoDestino;
-    }
-    std::string getOrigen(){
-        return puertoOrigen;
-    }
-    std::string getNombreDestino(){
         return nombreDestino;
     }
-    std::string getNombreOrigen(){
+    std::string getOrigen(){
         return nombreOringen;
+    }
+    std::string getNombreDestino(){
+        return destino;
+    }
+    std::string getNombreOrigen(){
+        return origen;
     }
     std::string Fecha(){
         return fecha;
