@@ -111,9 +111,9 @@ bool duplicated(std::string tempString, std::vector< std::string > aux){
     int length = (int)aux.size();
     for(int i = 0; i<length; i++){
         if(tempString == aux.at(i))
-            return false;
+            return true;
     }
-    return true;
+    return false;
 }
 
 
@@ -128,18 +128,23 @@ int main(int argc, const char * argv[]) {
     int length = (int)registros.size();
     Registro registro_temp;
 
-    
+//    std::cout<<"Origen: "<<registros.at(3).getOrigen()<<std::endl;
+//    std::cout<<"NombreOrigen: "<<registros.at(3).getNombreOrigen()<<std::endl;
+//    std::cout<<"Fecha: "<<registros.at(3).Fecha()<<std::endl;
+//    std::cout<<"Destino: "<<registros.at(3).getDestino()<<std::endl;
+//    std::cout<<"NombreDestino:"<<registros.at(3).getNombreDestino()<<std::endl;
     for(int i=0; i<length; i++){
         registro_temp = registros.at(i);
         nombre = registro_temp.getNombreOrigen();
         ip = registro_temp.getOrigen();
         auxiliar_ips.push_back(ip);
         auxiliar_nombres.push_back(nombre);
-        
-        //if(duplicated(ip, auxiliar_ips))
+
+        if(duplicated(ip, auxiliar_ips) || duplicated(nombre, auxiliar_nombres)){
             ips->addVertex(new Vertex<std::string, std::string>(ip));
-        //if(duplicated(nombre, auxiliar_nombres))
             nombres->addVertex(new Vertex<std::string, std::string>(nombre));
+
+        }
     }
     auxiliar_ips.empty();
     auxiliar_nombres.empty();
