@@ -107,29 +107,65 @@ auto read_csv_registro(std::string filename)
     return lineas;
 }
 
+bool duplicated(std::string tempString, std::vector< std::string > aux){
+    int length = (int)aux.size();
+    for(int i = 0; i<length; i++){
+        if(tempString == aux.at(i))
+            return false;
+    }
+    return true;
+}
+
 
 int main(int argc, const char * argv[]) {
     std::vector< Registro > registros = read_csv_registro("equipo7.csv");
-    Graph< Registro, int> * graph = new Graph<Registro,int>();
+    std::vector< std::string > auxiliar_ips;
+    std::vector< std::string > auxiliar_nombres;
+    std::string nombre;
+    std::string ip;
+    Graph< std::string, std::string > * ips = new Graph< std::string, std::string >();
+    Graph< std::string, std::string > * nombres = new Graph< std::string, std::string >();
     int length = (int)registros.size();
+    Registro registro_temp;
 
+    
     for(int i=0; i<length; i++){
-        graph->addVertex(new Vertex<Registro, int>(registros.at(i)));
+        registro_temp = registros.at(i);
+        nombre = registro_temp.getNombreOrigen();
+        ip = registro_temp.getOrigen();
+        auxiliar_ips.push_back(ip);
+        auxiliar_nombres.push_back(nombre);
+        
+        //if(duplicated(ip, auxiliar_ips))
+            ips->addVertex(new Vertex<std::string, std::string>(ip));
+        //if(duplicated(nombre, auxiliar_nombres))
+            nombres->addVertex(new Vertex<std::string, std::string>(nombre));
     }
+    auxiliar_ips.empty();
+    auxiliar_nombres.empty();
     
     
-//    Graph< std::pair<std::string, std::string>, std::pair<std::string, std::string>> * graph = new Graph<std::pair<std::string, std::string>,std::pair<std::string, std::string>>();
-//    int length = (int)registros.size();
-//    Registro registro_temp;
-//    std::pair<std::string, std::string> pair_temp;
 //    for(int i=0; i<length; i++){
 //        registro_temp = registros.at(i);
-//        pair_temp.first = registro_temp.getOrigen();
-//        pair_temp.second = registro_temp.getNombreOrigen();
 //
-//        graph->addVertex(new Vertex<std::pair<std::string, std::string, std::pair<std::string, std::string>>(pair_temp));
+//        ips->addEdge(
+//                     new Vertex<std::string, std::string>(registro_temp.getOrigen()),
+//                     new Vertex<std::string, std::string>(registro_temp.getDestino()), "");
+//
+//        nombres->addEdge(
+//                         new Vertex<std::string, std::string>(registro_temp.getNombreOrigen()),
+//                         new Vertex<std::string, std::string>(registro_temp.getNombreDestino()), "");
 //    }
     
-    std::cout<< *graph <<std::endl;
+    
+    
+    
+    std::cout<< *ips <<std::endl;
+    int a;
+    std::cin>> a;
+    std::cout<< *nombres <<std::endl;
+    
+    delete ips;
+    delete nombres;
     return 0;
 }

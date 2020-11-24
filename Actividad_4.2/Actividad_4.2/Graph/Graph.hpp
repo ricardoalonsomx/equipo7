@@ -16,10 +16,10 @@
 template <class V, class E>
 class Graph {
     
-    std::vector < Vertex<V, E> * > nodes;
+    
     
 public:
-    
+    std::vector < Vertex<V, E> * > nodes;
     Graph() {}
     ~Graph();
     
