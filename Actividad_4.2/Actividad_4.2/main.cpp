@@ -139,36 +139,22 @@ int main(int argc, const char * argv[]) {
         ip = registro_temp.getOrigen();
         auxiliar_ips.push_back(ip);
         auxiliar_nombres.push_back(nombre);
-
-        if(duplicated(ip, auxiliar_ips) || duplicated(nombre, auxiliar_nombres)){
-            ips->addVertex(new Vertex<std::string, std::string>(ip));
-            nombres->addVertex(new Vertex<std::string, std::string>(nombre));
-
-        }
-    }
-    auxiliar_ips.empty();
-    auxiliar_nombres.empty();
-    
-    
-    for(int i=0; i<length; i++){
-        registro_temp = registros.at(i);
         
-        Vertex<std::string, std::string> * edgeVertexOrigen = new Vertex<std::string, std::string>(registro_temp.getOrigen());
+        Vertex<std::string, std::string> * edgeVertexOrigen = new Vertex<std::string, std::string>(ip);
         Vertex<std::string, std::string> * edgeVertexDestino = new Vertex<std::string, std::string>(registro_temp.getDestino());
         
-        Vertex<std::string, std::string> * edgeVertexNombreOrigen = new Vertex<std::string, std::string>(registro_temp.getNombreOrigen());
+        Vertex<std::string, std::string> * edgeVertexNombreOrigen = new Vertex<std::string, std::string>(nombre);
         Vertex<std::string, std::string> * edgeVertexNombreDestino = new Vertex<std::string, std::string>(registro_temp.getNombreDestino());
+
+        if(duplicated(ip, auxiliar_ips) || duplicated(nombre, auxiliar_nombres)){
+            ips->addVertex(edgeVertexOrigen);
+            nombres->addVertex(edgeVertexNombreOrigen);
+
+        }
         
-        ips->addVertex(edgeVertexOrigen);
         ips->addVertex(edgeVertexDestino);
-        
-        nombres->addVertex(edgeVertexNombreOrigen);
         nombres->addVertex(edgeVertexNombreDestino);
-
         
-        std::cout << edgeVertexNombreOrigen->getInfo() << " " << edgeVertexNombreOrigen->getInfo() << " " << edgeVertexOrigen->getInfo() << " " << edgeVertexDestino->getInfo()  << std::endl;
-        
-
         ips->addEdge(
                      edgeVertexOrigen,
                      edgeVertexDestino, "");
@@ -176,8 +162,37 @@ int main(int argc, const char * argv[]) {
         nombres->addEdge(
                          edgeVertexNombreOrigen,
                          edgeVertexNombreDestino, "");
+        
+        std::cout << "Datos añadidos: " << i << std::endl;
     }
+    auxiliar_ips.empty();
+    auxiliar_nombres.empty();
     
+    
+//    for(int i=0; i<length; i++){
+//        registro_temp = registros.at(i);
+//
+//        Vertex<std::string, std::string> * edgeVertexOrigen = new Vertex<std::string, std::string>(registro_temp.getOrigen());
+//        Vertex<std::string, std::string> * edgeVertexDestino = new Vertex<std::string, std::string>(registro_temp.getDestino());
+//
+//        Vertex<std::string, std::string> * edgeVertexNombreOrigen = new Vertex<std::string, std::string>(registro_temp.getNombreOrigen());
+//        Vertex<std::string, std::string> * edgeVertexNombreDestino = new Vertex<std::string, std::string>(registro_temp.getNombreDestino());
+//
+//        ips->addVertex(edgeVertexOrigen);
+//        ips->addVertex(edgeVertexDestino);
+//
+//        nombres->addVertex(edgeVertexNombreOrigen);
+//        nombres->addVertex(edgeVertexNombreDestino);
+//
+//        ips->addEdge(
+//                     edgeVertexOrigen,
+//                     edgeVertexDestino, "");
+//
+//        nombres->addEdge(
+//                         edgeVertexNombreOrigen,
+//                         edgeVertexNombreDestino, "");
+//    }
+//
     
     
     
