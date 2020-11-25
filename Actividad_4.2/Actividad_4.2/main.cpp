@@ -136,21 +136,17 @@ int main(int argc, const char * argv[]) {
     int length = (int)registros.size();
     Registro registro_temp;
     wait();
-//    std::cout<<"Origen: "<<registros.at(3).getOrigen()<<std::endl;
-//    std::cout<<"NombreOrigen: "<<registros.at(3).getNombreOrigen()<<std::endl;
-//    std::cout<<"Fecha: "<<registros.at(3).Fecha()<<std::endl;
-//    std::cout<<"Destino: "<<registros.at(3).getDestino()<<std::endl;
-//    std::cout<<"NombreDestino:"<<registros.at(3).getNombreDestino()<<std::endl;
+    
     for(int i=0; i<length; i++){
         registro_temp = registros.at(i);
         nombre = registro_temp.getNombreOrigen();
         ip = registro_temp.getOrigen();
         auxiliar_ips.push_back(ip);
         auxiliar_nombres.push_back(nombre);
-        
+
         Vertex<std::string, std::string> * edgeVertexOrigen = new Vertex<std::string, std::string>(ip);
         Vertex<std::string, std::string> * edgeVertexDestino = new Vertex<std::string, std::string>(registro_temp.getDestino());
-        
+
         Vertex<std::string, std::string> * edgeVertexNombreOrigen = new Vertex<std::string, std::string>(nombre);
         Vertex<std::string, std::string> * edgeVertexNombreDestino = new Vertex<std::string, std::string>(registro_temp.getNombreDestino());
 
@@ -159,10 +155,10 @@ int main(int argc, const char * argv[]) {
             nombres->addVertex(edgeVertexNombreOrigen);
 
         }
-        
+
         ips->addVertex(edgeVertexDestino);
         nombres->addVertex(edgeVertexNombreDestino);
-        
+
         ips->addEdge(
                      edgeVertexOrigen,
                      edgeVertexDestino, "");
@@ -170,11 +166,42 @@ int main(int argc, const char * argv[]) {
         nombres->addEdge(
                          edgeVertexNombreOrigen,
                          edgeVertexNombreDestino, "");
-        
+
         std::cout << "Datos añadidos: " << (float)100*i/length <<"%" << std::endl;
     }
-    auxiliar_ips.empty();
-    auxiliar_nombres.empty();
+    
+    
+    //    for(int i=0; i<length; i++){
+    //        registro_temp = registros.at(i);
+    //        nombre = registro_temp.getNombreOrigen();
+    //        ip = registro_temp.getOrigen();
+    //        auxiliar_ips.push_back(ip);
+    //        auxiliar_nombres.push_back(nombre);
+    //
+    //        if(duplicated(ip, auxiliar_ips) || duplicated(nombre, auxiliar_nombres)){
+    //            ips->addVertex(nombre);
+    //            nombres->addVertex(ip);
+    //
+    //        }
+    //            std::cout << "Datos añadidos: " << (float)50*i/length <<"%" << std::endl;
+    //    }
+    //    auxiliar_ips.empty();
+    //    auxiliar_nombres.empty();
+    //
+    //    wait();
+    //    for(int i=0; i<length; i++){
+    //        registro_temp = registros.at(i);
+    //        Vertex<std::string, std::string> * origen = ips->findVertex(registros.at(i).getOrigen());
+    //        Vertex<std::string, std::string> * nombreOrigen = ips->findVertex(registros.at(i).getNombreOrigen());
+    //        Vertex<std::string, std::string> * destino = ips->findVertex(registros.at(i).getDestino());
+    //        Vertex<std::string, std::string> * nombreDestino = ips->findVertex(registros.at(i).getNombreDestino());
+    //
+    //        ips->addEdge(origen, destino, "");
+    //        nombres->addEdge(nombreOrigen, nombreDestino, "");
+    //
+    //        std::cout << "Datos añadidos: " << (float)50 +(50*i/length) <<"%" << std::endl;
+    //    }
+    
     
     
 //    for(int i=0; i<length; i++){
@@ -202,12 +229,15 @@ int main(int argc, const char * argv[]) {
 //    }
 //
     
-    std::cout<<nombres->getMasDestinos()<<std::endl;
     
 //    wait();
-//    std::cout<< *ips <<std::endl;
+//    std::cout<<nombres->getMasDestinos()<<std::endl;
 //    wait();
-//    std::cout<< *nombres <<std::endl;
+//    std::cout<< "El sitio lrf8nxdjzhwvscbf49mh.org tiene " << nombres->findSiteConections("lrf8nxdjzhwvscbf49mh.org") << " conexiones de entrada."<<std::endl;
+    wait();
+    std::cout<< *ips <<std::endl;
+    wait();
+    std::cout<< *nombres <<std::endl;
     
     delete ips;
     delete nombres;

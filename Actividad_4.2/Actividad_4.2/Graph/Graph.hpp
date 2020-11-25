@@ -28,6 +28,8 @@ public:
     void addEdge(Vertex<V,E> *, Vertex<V,E> *, const E & );
     void removeEdge(Vertex<V,E> *, Vertex<V,E> *, const E & );
     std::string getMasDestinos();
+    Vertex<V, E> * findVertex(std::string);
+    int findSiteConections(std::string );
     
     template <class Vn, class En>
     friend std::ostream & operator <<(std::ostream &, const Graph<Vn,En> &);
@@ -98,7 +100,8 @@ void Graph<V,E>::removeEdge(Vertex<V,E> * source, Vertex<V,E> * target, const E 
 
 template <class V, class E>
 std::string Graph<V,E>::getMasDestinos()
-{   int temp = 0;
+{
+    int temp = 0;
     std::string sitio = "";
     for (auto v :  nodes) {
         if(v->get_conexiones_salida()>temp){
@@ -108,6 +111,30 @@ std::string Graph<V,E>::getMasDestinos()
     }
     
     return sitio;
+}
+
+template <class V, class E>
+Vertex<V, E> * Graph<V,E>::findVertex(std::string sitio)
+{
+    
+    for (auto *v :  nodes) {
+        if(v->getInfo() == sitio)
+            return v;
+    }
+    
+    return nullptr;
+}
+
+template <class V, class E>
+int Graph<V,E>::findSiteConections(std::string sitio)
+{
+    
+    for (auto v :  nodes) {
+        if(v->getInfo() == sitio)
+            return v->get_conexiones_entrada();
+    }
+    
+    return -1;
 }
 
 template <class V, class E>
