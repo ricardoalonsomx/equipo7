@@ -32,9 +32,9 @@
 		69092F8C256B7A0B00072D99 /* Graph.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Graph.hpp; sourceTree = "<group>"; };
 		69092F8D256B7A0B00072D99 /* Vertex.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vertex.cpp; sourceTree = "<group>"; };
 		69092F8E256B7A0B00072D99 /* Edge.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Edge.cpp; sourceTree = "<group>"; };
-		69092F90256B890700072D99 /* Registro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Registro.hpp; sourceTree = "<group>"; };
 		69092F91256B890700072D99 /* Registro.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Registro.cpp; sourceTree = "<group>"; };
 		69092F97256B949400072D99 /* equipo7.csv */ = {isa = PBXFileReference; lastKnownFileType = text; path = equipo7.csv; sourceTree = "<group>"; };
+		B363D929256E185500C19202 /* Registro.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Registro.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,8 +91,8 @@
 		69092F94256B891100072D99 /* Registro */ = {
 			isa = PBXGroup;
 			children = (
+				B363D929256E185500C19202 /* Registro.hpp */,
 				69092F91256B890700072D99 /* Registro.cpp */,
-				69092F90256B890700072D99 /* Registro.hpp */,
 			);
 			path = Registro;
 			sourceTree = "<group>";
