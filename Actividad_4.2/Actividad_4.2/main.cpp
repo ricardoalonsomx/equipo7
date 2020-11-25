@@ -116,6 +116,14 @@ bool duplicated(std::string tempString, std::vector< std::string > aux){
     return false;
 }
 
+void wait(){
+    char rest = 'x';
+    while (rest!='C') {
+        std::cout<< "Introduzca C para continuar: ";
+        std::cin>>rest;
+    }
+}
+
 
 int main(int argc, const char * argv[]) {
     std::vector< Registro > registros = read_csv_registro("equipo7.csv");
@@ -127,7 +135,7 @@ int main(int argc, const char * argv[]) {
     Graph< std::string, std::string > * nombres = new Graph< std::string, std::string >();
     int length = (int)registros.size();
     Registro registro_temp;
-
+    wait();
 //    std::cout<<"Origen: "<<registros.at(3).getOrigen()<<std::endl;
 //    std::cout<<"NombreOrigen: "<<registros.at(3).getNombreOrigen()<<std::endl;
 //    std::cout<<"Fecha: "<<registros.at(3).Fecha()<<std::endl;
@@ -163,7 +171,7 @@ int main(int argc, const char * argv[]) {
                          edgeVertexNombreOrigen,
                          edgeVertexNombreDestino, "");
         
-        std::cout << "Datos añadidos: " << i << std::endl;
+        std::cout << "Datos añadidos: " << (float)100*i/length <<"%" << std::endl;
     }
     auxiliar_ips.empty();
     auxiliar_nombres.empty();
@@ -194,12 +202,12 @@ int main(int argc, const char * argv[]) {
 //    }
 //
     
+    std::cout<<nombres->getMasDestinos()<<std::endl;
     
-    
-    std::cout<< *ips <<std::endl;
-    int a;
-    std::cin>> a;
-    std::cout<< *nombres <<std::endl;
+//    wait();
+//    std::cout<< *ips <<std::endl;
+//    wait();
+//    std::cout<< *nombres <<std::endl;
     
     delete ips;
     delete nombres;

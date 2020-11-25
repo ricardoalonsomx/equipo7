@@ -27,6 +27,7 @@ public:
     void addVertex(Vertex<V,E> * );
     void addEdge(Vertex<V,E> *, Vertex<V,E> *, const E & );
     void removeEdge(Vertex<V,E> *, Vertex<V,E> *, const E & );
+    std::string getMasDestinos();
     
     template <class Vn, class En>
     friend std::ostream & operator <<(std::ostream &, const Graph<Vn,En> &);
@@ -93,6 +94,20 @@ void Graph<V,E>::removeEdge(Vertex<V,E> * source, Vertex<V,E> * target, const E 
     }
     target->removeConexion();
     
+}
+
+template <class V, class E>
+std::string Graph<V,E>::getMasDestinos()
+{   int temp = 0;
+    std::string sitio = "";
+    for (auto v :  nodes) {
+        if(v->get_conexiones_salida()>temp){
+            temp=0;
+            sitio = v->getInfo();
+        }
+    }
+    
+    return sitio;
 }
 
 template <class V, class E>
